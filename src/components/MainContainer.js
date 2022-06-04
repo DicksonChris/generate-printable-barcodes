@@ -80,7 +80,7 @@ const BarcodesContainer = () => {
         <>
             <Container className='mb-2'>
                 <Row>
-                    <Col xs='6'>
+                    <Col xs='11'>
                         <form
                             onSubmit={(event) => {
                                 event.preventDefault()
