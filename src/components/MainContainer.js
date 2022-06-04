@@ -49,9 +49,12 @@ const BarcodesContainer = () => {
         })
     }, [setLoading, setText])
 
-    const reactToPrintContent = useCallback(() => {
-        return componentRef.current
-    }, [componentRef.current])
+    const reactToPrintContent = useCallback(
+        () => {
+            return componentRef.current
+        }, // eslint-disable-next-line
+        [componentRef.current]
+    )
 
     const handlePrint = useReactToPrint({
         content: reactToPrintContent,
@@ -62,23 +65,28 @@ const BarcodesContainer = () => {
         removeAfterPrint: true
     })
 
-    useEffect(() => {
-        if (
-            text === "New, Updated Text!" &&
-            typeof onBeforeGetContentResolve.current === "function"
-        ) {
-            onBeforeGetContentResolve.current()
-        }
-    }, [onBeforeGetContentResolve.current, text])
+    useEffect(
+        () => {
+            if (
+                text === "New, Updated Text!" &&
+                typeof onBeforeGetContentResolve.current === "function"
+            ) {
+                onBeforeGetContentResolve.current()
+            }
+        }, // eslint-disable-next-line
+        [onBeforeGetContentResolve.current, text]
+    )
     return (
         <>
             <Container className='mb-2'>
                 <Row>
                     <Col xs='6'>
-                        <form onSubmit={(event) => {
-                                            event.preventDefault()
-                                            handlePrint()
-                                        }}>
+                        <form
+                            onSubmit={(event) => {
+                                event.preventDefault()
+                                handlePrint()
+                            }}
+                        >
                             <div className='input-group mb-3'>
                                 <input
                                     type='text'
@@ -93,7 +101,6 @@ const BarcodesContainer = () => {
                                         id='btn-print'
                                         className='btn btn-outline-primary btn-lg'
                                         type='submit'
-                                        
                                     >
                                         Print
                                     </button>

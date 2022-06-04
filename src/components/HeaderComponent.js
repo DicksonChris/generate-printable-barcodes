@@ -4,10 +4,7 @@ import {
     Navbar,
     NavbarToggler,
     Collapse,
-    NavItem,
-    Row,
-    Col,
-    Container
+    NavItem
 } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
