@@ -75,32 +75,31 @@ const BarcodesContainer = () => {
             <Container className='mb-2'>
                 <Row>
                     <Col xs='6'>
-                        <div className='input-group mb-3'>
-                            <input
-                                type='text'
-                                onChange={(event) => setItemName(event.target.value)}
-                                value={itemName}
-                                autoComplete='on'
-                                className='form-control'
-                                placeholder='Item #'
-                                onKeyUp={(event) => {
-                                    if (event.key === "Enter") {
-                                        handlePrint()
-                                    }
-                                }}
-                            />
-                            <div className='input-group-append'>
-                                <button
-                                    id='btn-print'
-                                    className='btn btn-outline-primary btn-lg'
-                                    type='button'
-                                    
-                                    onClick={handlePrint}
-                                >
-                                    Print
-                                </button>
+                        <form onSubmit={(event) => {
+                                            event.preventDefault()
+                                            handlePrint()
+                                        }}>
+                            <div className='input-group mb-3'>
+                                <input
+                                    type='text'
+                                    onChange={(event) => setItemName(event.target.value)}
+                                    value={itemName}
+                                    autoComplete='on'
+                                    className='form-control'
+                                    placeholder='Item #'
+                                />
+                                <div className='input-group-append'>
+                                    <button
+                                        id='btn-print'
+                                        className='btn btn-outline-primary btn-lg'
+                                        type='submit'
+                                        
+                                    >
+                                        Print
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </Col>
                     <Col className='d-flex align-items-start' xs='1'>
                         <AiFillSetting
