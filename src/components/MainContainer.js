@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef } from "react"
 import { AiFillPrinter, AiFillSetting } from "react-icons/ai"
 import { useReactToPrint } from "react-to-print"
 import { Col, Container, Row } from "reactstrap"
@@ -17,7 +17,7 @@ const BarcodesContainer = ({ setLoading }) => {
     const [pageHeight, setPageHeight] = useLocalStorage("page-height", 1)
     const pageDims = { pageWidth, pageHeight }
     const [pageCols, setPageCols] = useLocalStorage("page-columns", 3)
-    const [pageRows, setPageRows] = useLocalStorage("page-columns", 10)
+    const [pageRows, setPageRows] = useLocalStorage("page-rows", 10)
 
     // react-to-print boilerplate
     const componentRef = useRef(null)
@@ -302,8 +302,12 @@ const BarcodesContainer = ({ setLoading }) => {
             </Container>
             <div
                 className='d-grid'
-                style={{ placeItems: "center", backgroundColor: "lightgray", width: "100vw",
-                overflowX: 'hidden' }}
+                style={{
+                    placeItems: "center",
+                    backgroundColor: "lightgray",
+                    width: "100vw",
+                    overflowX: "hidden"
+                }}
             >
                 <div
                     className='d-inline-flex'
@@ -315,7 +319,7 @@ const BarcodesContainer = ({ setLoading }) => {
                         borderBottom: "dimgray 4px solid",
                         borderLeft: "dimgray 3px solid",
                         marginBottom: "4rem",
-                        overflowX: 'hidden'
+                        overflowX: "hidden"
                     }}
                 >
                     <div
