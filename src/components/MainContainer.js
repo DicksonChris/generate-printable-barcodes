@@ -110,7 +110,7 @@ const BarcodesContainer = ({ setLoading }) => {
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='textSizeSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Text Size
                                     </label>
@@ -123,12 +123,12 @@ const BarcodesContainer = ({ setLoading }) => {
                                         id='textSizeSlider'
                                         onChange={(event) => setTextSize(event.target.value)}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>{textSize}</span>
+                                    <span className='p-2 mw-val'>{textSize}</span>
                                 </div>
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='heightSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Height
                                     </label>
@@ -141,12 +141,12 @@ const BarcodesContainer = ({ setLoading }) => {
                                         id='heightSlider'
                                         onChange={(event) => setHeight(event.target.value)}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>{height}</span>
+                                    <span className='p-2 mw-val'>{height}</span>
                                 </div>
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='marginXSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Margin
                                     </label>
@@ -161,12 +161,12 @@ const BarcodesContainer = ({ setLoading }) => {
                                             setMarginX(parseInt(event.target.value))
                                         }
                                     />
-                                    <span className='p-2 ms-4 mw-val'>{marginX}</span>
+                                    <span className='p-2 mw-val'>{marginX}</span>
                                 </div>
                                 {/* <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='marginXSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Font
                                     </label>
@@ -197,7 +197,7 @@ const BarcodesContainer = ({ setLoading }) => {
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='pageColsSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Columns
                                     </label>
@@ -210,13 +210,13 @@ const BarcodesContainer = ({ setLoading }) => {
                                         id='pageColsSlider'
                                         onChange={(event) => setPageCols(event.target.value)}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>{pageCols}</span>
+                                    <span className='p-2 mw-val'>{pageCols}</span>
                                 </div>
 
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='pageRowsSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Rows
                                     </label>
@@ -231,13 +231,13 @@ const BarcodesContainer = ({ setLoading }) => {
                                             setPageRows(event.target.value)
                                         }}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>{pageRows}</span>
+                                    <span className='p-2 mw-val'>{pageRows}</span>
                                 </div>
 
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='pageWidthSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         X-Margin
                                     </label>
@@ -251,7 +251,7 @@ const BarcodesContainer = ({ setLoading }) => {
                                         id='pageWidthSlider'
                                         onChange={(event) => setPageWidth(event.target.value)}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>
+                                    <span className='p-2 mw-val'>
                                         {Math.round((pageWidth * 200) / 2) * 2 - 100}
                                     </span>
                                 </div>
@@ -259,7 +259,7 @@ const BarcodesContainer = ({ setLoading }) => {
                                 <div className='d-flex align-items-center mx-2'>
                                     <label
                                         htmlFor='pageHeightSlider'
-                                        className='form-label text-nowrap p-2 fs-5'
+                                        className='form-label text-nowrap mw-name fs-5'
                                     >
                                         Y-Margin
                                     </label>
@@ -273,7 +273,7 @@ const BarcodesContainer = ({ setLoading }) => {
                                         id='pageHeightSlider'
                                         onChange={(event) => setPageHeight(event.target.value)}
                                     />
-                                    <span className='p-2 ms-4 mw-val'>
+                                    <span className='p-2 mw-val'>
                                         {Math.round((pageHeight * 200) / 2) * 2 - 100}
                                     </span>
                                 </div>

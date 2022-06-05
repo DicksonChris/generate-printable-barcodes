@@ -117,7 +117,11 @@ body {
     transform: scale(1.5);
   }
 }
-
+.mw-name {
+    min-width: 4.7rem;
+    text-align: end;
+    margin-inline-end: 1rem;
+}
 .mw-val { 
     min-width: 3rem;
     text-align: center;
