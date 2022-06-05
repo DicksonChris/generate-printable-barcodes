@@ -302,7 +302,8 @@ const BarcodesContainer = ({ setLoading }) => {
             </Container>
             <div
                 className='d-grid'
-                style={{ placeItems: "center", backgroundColor: "lightgray", width: "100vw" }}
+                style={{ placeItems: "center", backgroundColor: "lightgray", width: "100vw",
+                overflowX: 'hidden' }}
             >
                 <div
                     className='d-inline-flex'
@@ -313,7 +314,8 @@ const BarcodesContainer = ({ setLoading }) => {
                         borderRight: "dimgray 4px solid",
                         borderBottom: "dimgray 4px solid",
                         borderLeft: "dimgray 3px solid",
-                        marginBottom: "4rem"
+                        marginBottom: "4rem",
+                        overflowX: 'hidden'
                     }}
                 >
                     <div
