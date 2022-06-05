@@ -1,6 +1,6 @@
 {
-    "name": "ssss-react",
-    "version": "2.0.0",
+    "name": "barcode-generator",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "@fontsource/inter": "^4.5.10",
