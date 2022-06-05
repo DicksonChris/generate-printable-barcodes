@@ -1,24 +1,27 @@
 import BarcodeLabel from "./BarcodeLabel"
 import { forwardRef } from "react"
 
-const Page = forwardRef(({ itemName, barcodeDims, pageDims: {pageWidth, pageHeight} }, ref) => {
+const Page = forwardRef(({ itemName, barcodeDims, pageCols, pageRows, pageDims: {pageWidth, pageHeight} }, ref) => {
+    let gridTemplateColumns = '';
+    for (let idx = 0; idx < pageCols; idx++) {
+        gridTemplateColumns += '1fr '
+    }
     const style = {
         width: "8.5in",
         height: '11in',
         maxHeight: "11in",
         display: "grid",
         overflow: "hidden",
-        gridTemplateColumns: "1fr 1fr 1fr" 
+        gridTemplateColumns
     }
-
-    console.log(style.marginRight)
 
     const PageContainer = () => {
         const barcodes = []
         const cellStyle = {
             display: "inline-block"
         }
-        for (let idx = 0; idx < 30; idx++) {
+        const pageItems = pageRows * pageCols
+        for (let idx = 0; idx < pageItems; idx++) {
             barcodes.push(
                 <BarcodeLabel
                     style={cellStyle}

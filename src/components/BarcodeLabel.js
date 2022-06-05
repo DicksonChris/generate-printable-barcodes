@@ -1,6 +1,6 @@
 import Barcode from "react-jsbarcode"
 
-const BarcodeLabel = ({ itemName, barcodeDims: {height, textSize, marginX} }) => {
+const BarcodeLabel = ({ itemName, barcodeDims: { height, textSize, marginX } }) => {
     const value = itemName
     const options = {
         width: 1,
@@ -16,6 +16,7 @@ const BarcodeLabel = ({ itemName, barcodeDims: {height, textSize, marginX} }) =>
     }
     const wrapperStyle = {
         border: "white 2px solid",
+        backgroundColor: "white",
         height: "100%",
         minWidth: 0,
         minHeight: 0,
@@ -26,7 +27,11 @@ const BarcodeLabel = ({ itemName, barcodeDims: {height, textSize, marginX} }) =>
 
     return (
         <div style={wrapperStyle}>
-            {value ? <Barcode value={value} options={options} /> : <span className="text-center w-100 align-self-center">Input item #</span>}
+            {value ? (
+                <Barcode value={value} options={options} />
+            ) : (
+                <span className='text-center w-100 align-self-center'>Input item #</span>
+            )}
         </div>
     )
 }
