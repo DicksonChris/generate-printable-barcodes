@@ -55,7 +55,7 @@ const BarcodesContainer = ({ setLoading }) => {
         <>
             <Container
                 fluid
-                className='main-container bg-light shadow-lg'
+                className='main-container bg-light shadow-lg d-print-none'
                 style={{ marginBottom: "4rem" }}
             >
                 <Container className='mb-2'>
@@ -301,7 +301,7 @@ const BarcodesContainer = ({ setLoading }) => {
                 </Container>
             </Container>
             <div
-                className='d-grid'
+                className='d-grid d-print-none'
                 style={{
                     placeItems: "center",
                     backgroundColor: "lightgray",

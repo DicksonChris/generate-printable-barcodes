@@ -35,7 +35,7 @@ const Page = forwardRef(({ itemName, barcodeDims, pageCols, pageRows, pageDims: 
     }
 
     return (
-        <div ref={ref} style={{ transform: `scaleX(${pageWidth}) scaleY(${pageHeight})` }}>
+        <div ref={ref} className='d-print-block' style={{ transform: `scaleX(${pageWidth}) scaleY(${pageHeight})` }}>
             <PageContainer />
         </div>
     )
