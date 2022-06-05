@@ -1,15 +1,8 @@
-import { Row, Col, Container } from 'reactstrap';
 import MainContainer from './MainContainer'
 
-const Home = () => {
+const Home = ({setLoading}) => {
     return (
-        <Container fluid className='main-container'>
-            <Row>
-                <Col className='text-center'>
-                    <MainContainer/>
-                </Col>
-            </Row>
-        </Container>
+        <MainContainer setLoading={setLoading} />
     );
 };
 
