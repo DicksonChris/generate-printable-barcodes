@@ -1,86 +1,86 @@
-import { useCallback, useRef } from "react"
-import { AiFillPrinter, AiFillSetting } from "react-icons/ai"
-import { useReactToPrint } from "react-to-print"
-import { Col, Container, Row } from "reactstrap"
-import Page from "./Page"
-import useLocalStorage from "./useLocalStorage"
+import { useCallback, useRef } from "react";
+import { AiFillPrinter, AiFillSetting } from "react-icons/ai";
+import { useReactToPrint } from "react-to-print";
+import { Col, Container, Row } from "reactstrap";
+import Page from "./Page";
+import useLocalStorage from "./useLocalStorage";
 
 const BarcodesContainer = ({ setLoading }) => {
-    const [itemName, setItemName] = useLocalStorage("item-name", "")
-    const [settings, setSettings] = useLocalStorage("settings-shown", false)
-    const [height, setHeight] = useLocalStorage("height", 40)
-    const [textSize, setTextSize] = useLocalStorage("font-size", 9)
-    const [marginX, setMarginX] = useLocalStorage("margin", 0)
-    const barcodeDims = { height, textSize, marginX }
+    const [itemName, setItemName] = useLocalStorage("item-name", "");
+    const [settings, setSettings] = useLocalStorage("settings-shown", false);
+    const [height, setHeight] = useLocalStorage("height", 40);
+    const [textSize, setTextSize] = useLocalStorage("font-size", 9);
+    const [marginX, setMarginX] = useLocalStorage("margin", 0);
+    const barcodeDims = { height, textSize, marginX };
 
-    const [pageWidth, setPageWidth] = useLocalStorage("page-width", 1)
-    const [pageHeight, setPageHeight] = useLocalStorage("page-height", 1)
-    const pageDims = { pageWidth, pageHeight }
-    const [pageCols, setPageCols] = useLocalStorage("page-columns", 3)
-    const [pageRows, setPageRows] = useLocalStorage("page-rows", 10)
+    const [pageWidth, setPageWidth] = useLocalStorage("page-width", 1);
+    const [pageHeight, setPageHeight] = useLocalStorage("page-height", 1);
+    const pageDims = { pageWidth, pageHeight };
+    const [pageCols, setPageCols] = useLocalStorage("page-columns", 3);
+    const [pageRows, setPageRows] = useLocalStorage("page-rows", 10);
 
     // react-to-print boilerplate
-    const componentRef = useRef(null)
+    const componentRef = useRef(null);
 
-    const onBeforeGetContentResolve = useRef(null)
+    const onBeforeGetContentResolve = useRef(null);
 
     const handleOnBeforeGetContent = useCallback(() => {
-        setLoading(true)
+        setLoading(true);
 
         return new Promise((resolve) => {
-            onBeforeGetContentResolve.current = resolve
+            onBeforeGetContentResolve.current = resolve;
 
             setTimeout(() => {
-                setLoading(false)
-                resolve()
-            }, 2000)
-        })
-    }, [setLoading])
+                setLoading(false);
+                resolve();
+            }, 2000);
+        });
+    }, [setLoading]);
 
     const reactToPrintContent = useCallback(
         () => {
-            return componentRef.current
+            return componentRef.current;
         }, // eslint-disable-next-line
         [componentRef.current]
-    )
+    );
 
     const handlePrint = useReactToPrint({
         content: reactToPrintContent,
         documentTitle: "Print dialog | Barcode Generator",
         onBeforeGetContent: handleOnBeforeGetContent,
-        removeAfterPrint: true
-    })
+        removeAfterPrint: true,
+    });
 
     return (
         <>
             <Container
                 fluid
-                className='main-container bg-light shadow-lg'
+                className="main-container bg-light shadow-lg d-print-none"
                 style={{ marginBottom: "4rem" }}
             >
-                <Container className='mb-2'>
+                <Container className="mb-2">
                     <Row>
-                        <Col xs='10' className='pe-0'>
+                        <Col xs="10" className="pe-0">
                             <form
                                 onSubmit={(event) => {
-                                    event.preventDefault()
-                                    handlePrint()
+                                    event.preventDefault();
+                                    handlePrint();
                                 }}
                             >
-                                <div className='input-group mb-3'>
+                                <div className="input-group mb-3">
                                     <input
-                                        type='text'
+                                        type="text"
                                         onChange={(event) => setItemName(event.target.value)}
                                         value={itemName}
-                                        autoComplete='on'
-                                        className='form-control'
-                                        placeholder='Item #'
+                                        autoComplete="on"
+                                        className="form-control"
+                                        placeholder="Item #"
                                     />
-                                    <div className='input-group-append'>
+                                    <div className="input-group-append">
                                         <button
-                                            id='btn-print'
-                                            className='btn btn-outline-primary btn-lg'
-                                            type='submit'
+                                            id="btn-print"
+                                            className="btn btn-outline-primary btn-lg"
+                                            type="submit"
                                         >
                                             <AiFillPrinter /> Print
                                         </button>
@@ -88,208 +88,188 @@ const BarcodesContainer = ({ setLoading }) => {
                                 </div>
                             </form>
                         </Col>
-                        <Col className='d-flex align-items-start ps-0' xs='2'>
+                        <Col className="d-flex align-items-start ps-0" xs="2">
                             <AiFillSetting
-                                id='settings-icon'
-                                className='btn text-secondary p-0 m-0'
+                                id="settings-icon"
+                                className="btn text-secondary p-0 m-0"
                                 onClick={() => {
-                                    setSettings(!settings)
+                                    setSettings(!settings);
                                 }}
                             />
                         </Col>
                     </Row>
                     <Row>
-                        <Col md='6'>
+                        <Col md="6">
                             <Container
-                                id='wh-range-selectors'
+                                id="wh-range-selectors"
                                 className={`px-0 py-4 flex-column ${
                                     settings ? "d-flex" : "d-none"
                                 }`}
                             >
                                 <h2>Barcode Settings</h2>
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='textSizeSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="textSizeSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Text Size
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={textSize}
-                                        className='form-range'
-                                        min='0'
-                                        max='100'
-                                        id='textSizeSlider'
+                                        className="form-range"
+                                        min="0"
+                                        max="100"
+                                        id="textSizeSlider"
                                         onChange={(event) => setTextSize(event.target.value)}
                                     />
-                                    <span className='p-2 mw-val'>{textSize}</span>
+                                    <span className="p-2 mw-val">{textSize}</span>
                                 </div>
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='heightSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="heightSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Height
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={height}
-                                        className='form-range'
-                                        min='10'
-                                        max='100'
-                                        id='heightSlider'
+                                        className="form-range"
+                                        min="10"
+                                        max="100"
+                                        id="heightSlider"
                                         onChange={(event) => setHeight(event.target.value)}
                                     />
-                                    <span className='p-2 mw-val'>{height}</span>
+                                    <span className="p-2 mw-val">{height}</span>
                                 </div>
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='marginXSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="marginXSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Margin
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={marginX}
-                                        className='form-range'
-                                        min='1'
-                                        max='100'
-                                        id='marginXSlider'
+                                        className="form-range"
+                                        min="1"
+                                        max="100"
+                                        id="marginXSlider"
                                         onChange={(event) =>
                                             setMarginX(parseInt(event.target.value))
                                         }
                                     />
-                                    <span className='p-2 mw-val'>{marginX}</span>
+                                    <span className="p-2 mw-val">{marginX}</span>
                                 </div>
-                                {/* <div className='d-flex align-items-center mx-2'>
-                                    <label
-                                        htmlFor='marginXSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
-                                    >
-                                        Font
-                                    </label>
-                                    <input
-                                        type=''
-                                        value={marginX}
-                                        className='form-range'
-                                        min='1'
-                                        max='100'
-                                        id='marginXSlider'
-                                        onChange={(event) =>
-                                            setMarginX(parseInt(event.target.value))
-                                        }
-                                    />
-                                    <span className='p-2 ms-4'>{marginX}</span>
-                                </div> */}
                             </Container>
                         </Col>
-                        <Col md='6'>
+                        <Col md="6">
                             <Container
-                                id='pwh-range-selectors'
+                                id="pwh-range-selectors"
                                 className={`px-0 py-4 flex-column ${
                                     settings ? "d-flex" : "d-none"
                                 }`}
                             >
                                 <h2>Page Settings</h2>
 
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='pageColsSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="pageColsSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Columns
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={pageCols}
-                                        className='form-range'
-                                        min='1'
-                                        max='6'
-                                        id='pageColsSlider'
+                                        className="form-range"
+                                        min="1"
+                                        max="6"
+                                        id="pageColsSlider"
                                         onChange={(event) => setPageCols(event.target.value)}
                                     />
-                                    <span className='p-2 mw-val'>{pageCols}</span>
+                                    <span className="p-2 mw-val">{pageCols}</span>
                                 </div>
 
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='pageRowsSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="pageRowsSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Rows
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={pageRows}
-                                        className='form-range'
-                                        min='1'
-                                        max='12'
-                                        id='pageRowsSlider'
+                                        className="form-range"
+                                        min="1"
+                                        max="12"
+                                        id="pageRowsSlider"
                                         onChange={(event) => {
-                                            setPageRows(event.target.value)
+                                            setPageRows(event.target.value);
                                         }}
                                     />
-                                    <span className='p-2 mw-val'>{pageRows}</span>
+                                    <span className="p-2 mw-val">{pageRows}</span>
                                 </div>
 
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='pageWidthSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="pageWidthSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         X-Margin
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={pageWidth}
-                                        className='form-range'
-                                        min='0.5'
-                                        max='1'
-                                        step='0.01'
-                                        id='pageWidthSlider'
+                                        className="form-range"
+                                        min="0.5"
+                                        max="1"
+                                        step="0.01"
+                                        id="pageWidthSlider"
                                         onChange={(event) => setPageWidth(event.target.value)}
                                     />
-                                    <span className='p-2 mw-val'>
+                                    <span className="p-2 mw-val">
                                         {Math.round((pageWidth * 200) / 2) * 2 - 100}
                                     </span>
                                 </div>
 
-                                <div className='d-flex align-items-center mx-2'>
+                                <div className="d-flex align-items-center mx-2">
                                     <label
-                                        htmlFor='pageHeightSlider'
-                                        className='form-label text-nowrap mw-name fs-5'
+                                        htmlFor="pageHeightSlider"
+                                        className="form-label text-nowrap mw-name fs-5"
                                     >
                                         Y-Margin
                                     </label>
                                     <input
-                                        type='range'
+                                        type="range"
                                         value={pageHeight}
-                                        className='form-range'
-                                        min='0.5'
-                                        max='1'
-                                        step='0.01'
-                                        id='pageHeightSlider'
+                                        className="form-range"
+                                        min="0.5"
+                                        max="1"
+                                        step="0.01"
+                                        id="pageHeightSlider"
                                         onChange={(event) => setPageHeight(event.target.value)}
                                     />
-                                    <span className='p-2 mw-val'>
+                                    <span className="p-2 mw-val">
                                         {Math.round((pageHeight * 200) / 2) * 2 - 100}
                                     </span>
                                 </div>
 
-                                <div className='d-flex m-2'>
+                                <div className="d-flex m-2">
                                     <button
-                                        id='reset'
-                                        className='btn btn-warning w-100'
+                                        id="reset"
+                                        className="btn btn-warning w-100"
                                         onClick={() => {
-                                            setTextSize(9)
-                                            setHeight(40)
-                                            setMarginX(0)
-                                            setPageWidth(1)
-                                            setPageHeight(1)
-                                            setPageCols(3)
-                                            setPageRows(10)
+                                            setTextSize(9);
+                                            setHeight(40);
+                                            setMarginX(0);
+                                            setPageWidth(1);
+                                            setPageHeight(1);
+                                            setPageCols(3);
+                                            setPageRows(10);
                                         }}
                                     >
                                         Reset
@@ -301,16 +281,18 @@ const BarcodesContainer = ({ setLoading }) => {
                 </Container>
             </Container>
             <div
-                className='d-grid'
+                className="d-grid"
+                id='preview-gray-outer-area'
                 style={{
                     placeItems: "center",
                     backgroundColor: "lightgray",
                     width: "100vw",
-                    overflowX: "hidden"
+                    overflowX: "hidden",
                 }}
             >
                 <div
-                    className='d-inline-flex'
+                    className="d-inline-flex"
+                    id='preview-border-area'
                     style={{
                         backgroundColor: "lightgray",
                         height: "fitContent",
@@ -319,30 +301,30 @@ const BarcodesContainer = ({ setLoading }) => {
                         borderBottom: "dimgray 4px solid",
                         borderLeft: "dimgray 3px solid",
                         marginBottom: "4rem",
-                        overflowX: "hidden"
+                        overflowX: "hidden",
                     }}
                 >
                     <div
-                        className='d-inline-flex justify-content-center'
-                        id='pass-through-bg'
+                        className="d-inline-flex justify-content-center"
+                        id="pass-through-bg"
                         style={{
                             height: "11in",
                             width: "8.5in",
                             backgroundColor: "#eeeeee",
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23aaa6af' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23aaa6af' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
                         }}
                     >
                         {!itemName ? (
                             <div
-                                className='d-flex'
+                                className="d-flex"
                                 style={{ width: "8.5in", height: "11", backgroundColor: "white" }}
                             >
                                 <div
-                                    className='text-center align-self-center'
+                                    className="text-center align-self-center"
                                     style={{
                                         width: "8.5in",
                                         height: "11",
-                                        backgroundColor: "white"
+                                        backgroundColor: "white",
                                     }}
                                 >
                                     Input Item #
@@ -350,7 +332,7 @@ const BarcodesContainer = ({ setLoading }) => {
                             </div>
                         ) : (
                             <Page
-                                id='print-element'
+                                id="print-element"
                                 itemName={itemName}
                                 barcodeDims={barcodeDims}
                                 pageDims={pageDims}
@@ -363,6 +345,6 @@ const BarcodesContainer = ({ setLoading }) => {
                 </div>
             </div>
         </>
-    )
-}
-export default BarcodesContainer
+    );
+};
+export default BarcodesContainer;
