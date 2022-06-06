@@ -7,7 +7,7 @@ const Header = () => {
 
     return (
         <>
-            <Navbar dark sticky="top" expand="md">
+            <Navbar dark className="d-print-none" sticky="top" expand="md">
                 <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} />
                 <Collapse isOpen={menuOpen} navbar className="justify-content-around">
                     <Nav navbar className="justify-content-center">
