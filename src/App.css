@@ -144,15 +144,11 @@ body {
     }
 
     #preview-border-area {
-        background-color: unset !important;
+        background-color: white;
         border-color: unset !important;
         border-style: unset !important;
         border-width: unset !important;
         margin-bottom: unset !important;
         overflow-x: unset !important;
-    }
-
-    .d-inline-flex {
-        display: unset !important;
     }
 }
