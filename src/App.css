@@ -11,7 +11,8 @@ body {
 }
 
 .main-container {
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 8px;
 }
 
 #settings-icon {
@@ -208,4 +209,8 @@ body {
         width: 100%;
         display: table-cell;
     }
+}
+
+.hidden {
+    display: none
 }
