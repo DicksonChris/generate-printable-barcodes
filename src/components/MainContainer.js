@@ -282,6 +282,7 @@ const BarcodesContainer = ({ setLoading }) => {
             </Container>
             <div
                 className="d-grid"
+                id='preview-gray-outer-area'
                 style={{
                     placeItems: "center",
                     backgroundColor: "lightgray",
@@ -291,6 +292,7 @@ const BarcodesContainer = ({ setLoading }) => {
             >
                 <div
                     className="d-inline-flex"
+                    id='preview-border-area'
                     style={{
                         backgroundColor: "lightgray",
                         height: "fitContent",
