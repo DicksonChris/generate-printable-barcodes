@@ -130,3 +130,21 @@ body {
 .svg-color {
     fill: #ffc107;
 }
+
+@media print {
+    #preview-gray-outer-area {
+        place-items: "unset";
+        background-color: "unset";
+        width: "unset";
+        overflow-x: "unset";
+    }
+
+    #preview-border-area {
+        background-color: "unset";
+        border-color: "unset";
+        border-style: "unset";
+        border-width: "unset";
+        margin-bottom: "unset";
+        overflow-x: "unset";
+    }
+}
