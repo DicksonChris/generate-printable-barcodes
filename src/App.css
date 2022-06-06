@@ -134,6 +134,8 @@ body {
 @media print {
     body {
         background-color: unset !important;
+        margin: 0;
+        padding: 0;
     }
 
     #preview-gray-outer-area {
@@ -141,14 +143,27 @@ body {
         background-color: unset !important;
         width: unset !important;
         overflow-x: unset !important;
+        height: 100%;
+        width: 100%;
+        border: 1px solid transparent;
+        page-break-after: always;
     }
 
     #preview-border-area {
-        background-color: white;
+        background-color: white !important;
         border-color: unset !important;
         border-style: unset !important;
         border-width: unset !important;
         margin-bottom: unset !important;
         overflow-x: unset !important;
+        height: 100%;
+        width: 100%;
+        display: table;
+    }
+
+    #pass-through-bg {
+        height: 100%;
+        width: 100%;
+        display: table-cell;
     }
 }
