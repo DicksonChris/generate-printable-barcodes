@@ -4,6 +4,7 @@ import { useReactToPrint } from "react-to-print";
 import { Col, Container, Row } from "reactstrap";
 import Page from "./Page";
 import useLocalStorage from "./useLocalStorage";
+import { isMobile } from "react-device-detect";
 
 const BarcodesContainer = ({ setLoading }) => {
     const [itemName, setItemName] = useLocalStorage("item-name", "");
@@ -64,6 +65,10 @@ const BarcodesContainer = ({ setLoading }) => {
                             <form
                                 onSubmit={(event) => {
                                     event.preventDefault();
+                                    if (isMobile) {
+                                        window.print();
+                                        return;
+                                    }
                                     handlePrint();
                                 }}
                             >
@@ -282,7 +287,7 @@ const BarcodesContainer = ({ setLoading }) => {
             </Container>
             <div
                 className="d-grid"
-                id='preview-gray-outer-area'
+                id="preview-gray-outer-area"
                 style={{
                     placeItems: "center",
                     backgroundColor: "lightgray",
@@ -292,7 +297,7 @@ const BarcodesContainer = ({ setLoading }) => {
             >
                 <div
                     className="d-inline-flex"
-                    id='preview-border-area'
+                    id="preview-border-area"
                     style={{
                         backgroundColor: "lightgray",
                         height: "fitContent",
