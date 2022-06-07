@@ -6,6 +6,7 @@ import { Col, Container, Row } from "reactstrap"
 import timeout from "../utils/timeout"
 import Alert from "./Alert"
 import Page from "./Page"
+import SaveBarcode from "./SaveBarcode"
 import useLocalStorage from "./useLocalStorage"
 
 const BarcodesContainer = ({ setLoading }) => {
@@ -24,8 +25,7 @@ const BarcodesContainer = ({ setLoading }) => {
     const [pageRows, setPageRows] = useLocalStorage("page-rows", 10)
 
     // react-to-print boilerplate
-    const componentRef = useRef(null)
-
+    const componentRef = useRef()
     const onBeforeGetContentResolve = useRef(null)
 
     const handleOnBeforeGetContent = useCallback(() => {
@@ -104,18 +104,21 @@ const BarcodesContainer = ({ setLoading }) => {
                         <Col className='d-flex align-items-start ps-0' xs='2'>
                             <AiFillSetting
                                 id='settings-icon'
-                                className='btn text-secondary p-0 m-0'
+                                className='btn link-secondary p-0 m-0'
                                 onClick={() => {
                                     setSettings(!settings)
                                 }}
+                                title='Open settings menu'
                             />
+                            <SaveBarcode itemName={itemName} />
                         </Col>
                     </Row>
-                    <Row className="m-0 p-0">
-                        <Col className="m-0 p-0">
+                    <Row className='m-0 p-0'>
+                        <Col className='m-0 p-0'>
                             <Alert show={showAlert} />
                         </Col>
                     </Row>
+
                     <Row>
                         <Col md='6'>
                             <Container
