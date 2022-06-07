@@ -15,6 +15,7 @@ const BarcodesContainer = ({ setLoading }) => {
     const [height, setHeight] = useLocalStorage("height", 40)
     const [textSize, setTextSize] = useLocalStorage("font-size", 9)
     const [marginX, setMarginX] = useLocalStorage("margin", 0)
+    const [alertText, setAlertText] = useState("")
     const [showAlert, setShowAlert] = useState(false)
     const barcodeDims = { height, textSize, marginX }
 
@@ -69,9 +70,9 @@ const BarcodesContainer = ({ setLoading }) => {
                                 onSubmit={(event) => {
                                     event.preventDefault()
                                     // Check if input is empty
-                                    if (timeout(itemName, setShowAlert)) {
+                                    if (timeout(itemName, setShowAlert, setAlertText)) { 
                                         return
-                                    }
+                                    } 
 
                                     if (isMobile) {
                                         window.print()
@@ -110,12 +111,12 @@ const BarcodesContainer = ({ setLoading }) => {
                                 }}
                                 title='Open settings menu'
                             />
-                            <SaveBarcode itemName={itemName} />
+                            <SaveBarcode itemName={itemName} setShowAlert={setShowAlert} setAlertText={setAlertText}/>
                         </Col>
                     </Row>
                     <Row className='m-0 p-0'>
                         <Col className='m-0 p-0'>
-                            <Alert show={showAlert} />
+                            <Alert show={showAlert} alertText={alertText} />
                         </Col>
                     </Row>
 

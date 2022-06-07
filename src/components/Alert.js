@@ -1,6 +1,6 @@
 import { AiFillInfoCircle } from "react-icons/ai"
 
-const Alert = ({ show }) => {
+const Alert = ({ show, alertText }) => {
     return (
         <div>
             <div className='relative fs-6'>
@@ -8,7 +8,7 @@ const Alert = ({ show }) => {
                     <div role='alert' className={`alert alert-warning p-2 ${show || "hidden"}`}>
                         <div>
                             <AiFillInfoCircle className='fill-info' />{" "}
-                            <span>Barcode text is required</span>
+                            <span>{alertText}</span>
                         </div>
                     </div>
                 ) : (
