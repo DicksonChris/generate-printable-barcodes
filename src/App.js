@@ -5,18 +5,21 @@ import { Routes, Route } from "react-router-dom"
 import { useState } from "react"
 import Loading from "./components/Loading"
 import "./App.css"
+import { BarcodeProvider } from "./components/BarcodeContext"
 
 function App() {
-    const [loading, setLoading] = useState(  false)
+    const [loading, setLoading] = useState(false)
 
     return (
         <div className='App'>
-            <Loading loading={loading} />
-            <Header />
-            <Routes>
-                <Route path='/' element={<Home setLoading={setLoading} />} />
-                <Route path='/about' element={<About />} />
-            </Routes>
+            <BarcodeProvider>
+                <Loading loading={loading} />
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home setLoading={setLoading} />} />
+                    <Route path='/about' element={<About />} />
+                </Routes>
+            </BarcodeProvider>
         </div>
     )
 }
