@@ -15,7 +15,8 @@ body {
   padding-bottom: 8px;
 }
 
-#settings-icon {
+#settings-icon,
+#save-barcode-button {
   height: 3rem;
   width: 100%;
 }

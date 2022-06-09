@@ -70,9 +70,9 @@ const BarcodesContainer = ({ setLoading }) => {
                                 onSubmit={(event) => {
                                     event.preventDefault()
                                     // Check if input is empty
-                                    if (timeout(itemName, setShowAlert, setAlertText)) { 
+                                    if (timeout(itemName, setShowAlert, setAlertText)) {
                                         return
-                                    } 
+                                    }
 
                                     if (isMobile) {
                                         window.print()
@@ -84,7 +84,28 @@ const BarcodesContainer = ({ setLoading }) => {
                                 <div className='input-group mb-3'>
                                     <input
                                         type='text'
-                                        onChange={(event) => setItemName(event.target.value)}
+                                        onChange={(event) => {
+                                            const text = event.target.value
+                                            setItemName(text)
+
+                                            // Check if the text starts with a space
+                                            if (text.charAt(0) === " ") {
+                                                setShowAlert(true)
+                                                setAlertText(
+                                                    "Barcode should not START with a space"
+                                                )
+                                                return
+                                            }
+
+                                            // Check if the text ends with a space
+                                            if (text.charAt(text.length - 1) === " ") {
+                                                setShowAlert(true)
+                                                setAlertText(`Barcode should not END with a space`)
+                                                return
+                                            }
+
+                                            setShowAlert(false)
+                                        }}
                                         value={itemName}
                                         autoComplete='on'
                                         className='form-control'
@@ -106,12 +127,18 @@ const BarcodesContainer = ({ setLoading }) => {
                             <AiFillSetting
                                 id='settings-icon'
                                 className='btn link-secondary p-0 m-0'
+                                flex='1'
                                 onClick={() => {
                                     setSettings(!settings)
                                 }}
                                 title='Open settings menu'
                             />
-                            <SaveBarcode itemName={itemName} setShowAlert={setShowAlert} setAlertText={setAlertText}/>
+                            <SaveBarcode
+                                itemName={itemName}
+                                flex='1'
+                                setShowAlert={setShowAlert}
+                                setAlertText={setAlertText}
+                            />
                         </Col>
                     </Row>
                     <Row className='m-0 p-0'>
