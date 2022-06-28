@@ -7,7 +7,7 @@ import timeout from "../utils/timeout"
 import Alert from "./Alert"
 import Page from "./Page"
 import SaveBarcode from "./SaveBarcode"
-import useLocalStorage from "./useLocalStorage"
+import useLocalStorage from "../hooks/useLocalStorage"
 
 const BarcodesContainer = ({ setLoading }) => {
     const [itemName, setItemName] = useLocalStorage("item-name", "")
